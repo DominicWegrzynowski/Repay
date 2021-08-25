@@ -2,7 +2,7 @@
 <html lang="en" class="h-100">
 
     <head>
-        <title>App Name: The App</title>
+        <title>REPAY: The App</title>
         <!-- Required meta tags -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -24,7 +24,7 @@
             <div class="container-fluid">
                 <img src="img/android-chrome-192x192.png" class="me-3" 
                     width="30" height="24">
-                <a class="navbar-brand main-font" href="/index.html">APP NAME</a>
+                <a class="navbar-brand main-font" href="/index.html">REPAY</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
                     aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -41,7 +41,7 @@
                             <a class="nav-link secondary-font" href="/code.html">The Code</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link secondary-font" target="_blank" href="https://github.com/DominicWegrzynowski/ZeroTo100">Git Repo</a>
+                            <a class="nav-link secondary-font" target="_blank" href="https://github.com/DominicWegrzynowski/repay ">Git Repo</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link secondary-font" target="_blank" href="https://dominicdeveloper.netlify.app/">About</a>
@@ -53,8 +53,75 @@
         </nav>
         <!--CONTENT-->
         <main class="flex-shrink-0">
-            <div class="container col-xxl-8 px-4 py-5">
-                
+            <div class="container col-xxl-8 my-5">
+                <!--HEADER-->
+                <div class="row">
+                    <form class="col-4 border border-1 border-dark p-3 grey-background">
+                        <div class="row g-2 align-items-center m-2">
+                            <div class="col-4">
+                                <label class="form-label">Loan Amount:</label>
+                            </div>
+                            <div class="col-8">
+                                <input class="form-control"
+                                       id="loanAmount"
+                                       type="number"
+                                       placeholder="$0"
+                                       value="0"
+                                       aria-label="Loan Amount"  
+                                >
+                            </div>
+                        </div>
+                        <div class="row g-2 align-items-center m-2">
+                            <div class="col-4">
+                                <label class="form-label">Term(Months):</label>
+                            </div>
+                            <div class="col-8">
+                                <input class="form-control"
+                                       id="term"
+                                       type="number"
+                                       placeholder="0"
+                                       value="0"
+                                       aria-label="Term"  
+                                >
+                            </div>
+                        </div>
+                        <div class="row g-2 align-items-center m-2">
+                            <div class="col-4">
+                                <label class="form-label">Interest Rate:</label>
+                            </div>
+                            <div class="col-8">
+                                <input class="form-control"
+                                       id="interestRate"
+                                       type="number"
+                                       placeholder="0%"
+                                       value="0"
+                                       aria-label="Interest Rate"  
+                                >
+                            </div>
+                        </div>
+                        <div class="row g-2 mt-4">
+                            <button type="button" class="btn btn-outline-info">Submit</button>
+                        </div>
+                    </form>
+                    <div class="col-8 border border-1 border-dark p-3 ">
+                        <div class="row">
+                            <div class="col">
+                                <h5>Your Monthly Payments</h5>
+                            </div>
+                        </div>
+                        <div class="row d-flex align-content-end">
+                            <div class="col">
+                                <h1 class="" id="monthlyPayment">269.53</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--TABLE-->
+                <div class="row">
+                    <table>
+                        <!--RESULTS-->
+                    </table>
+                </div>
             </div>
         </main>
         <!--FOOTER-->

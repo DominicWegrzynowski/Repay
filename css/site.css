@@ -74,3 +74,11 @@ pre[class*="language-"] {
 .secondary-font {
     font-family: 'Roboto Mono', monospace;
 }
+
+.grey-background {
+    background-color: #eeeeee;
+}
+
+#monthlyPayment {
+    font-size: 60px;
+}
