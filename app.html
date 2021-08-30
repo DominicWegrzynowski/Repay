@@ -55,15 +55,15 @@
         <main class="flex-shrink-0">
             <div class="container col-xxl-8 my-5">
                 <!--HEADER-->
-                <div class="row">
-                    <form class="col-4 border border-1 border-dark p-3 grey-background">
+                <div class="row d-flex">
+                    <form class="col-4 border border-1 border-dark p-3 grey-background me-3">
                         <div class="row g-2 align-items-center m-2">
                             <div class="col-4">
                                 <label class="form-label">Loan Amount:</label>
                             </div>
                             <div class="col-8">
                                 <input class="form-control"
-                                       id="loanAmount"
+                                       id="balance"
                                        type="number"
                                        placeholder="$0"
                                        value="0"
@@ -103,22 +103,54 @@
                             <button type="button" class="btn btn-outline-info">Submit</button>
                         </div>
                     </form>
-                    <div class="col-8 border border-1 border-dark p-3 ">
+                    <div class="col border border-1 border-dark p-3">
                         <div class="row">
-                            <div class="col">
-                                <h5>Your Monthly Payments</h5>
+                            <div class="col text-center">
+                                <h3>Your Monthly Payment</h3>
                             </div>
                         </div>
-                        <div class="row d-flex align-content-end">
-                            <div class="col">
-                                <h1 class="" id="monthlyPayment">269.53</h1>
+                        <div class="row">
+                            <div class="col text-center mb-5">
+                                <h1 id="monthlyPaymentLabel">$293.49</h1>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6 ps-5 text-start">
+                                <h5>Total Principal</h5>
+                            </div>
+                            <div class="col-6 pe-5 text-end">
+                                <h5 id="totalPrincipalLabel">$25,000.000</h5>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6 ps-5 text-start">
+                                <h5>Total Interest</h5>
+                            </div>
+                            <div class="col-6 pe-5 text-end">
+                                <h5 id="totalInterestLabel">$3,306.85</h5>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6 ps-5 text-start">
+                                <h5>Total Cost</h5>
+                            </div>
+                            <div class="col-6 pe-5 text-end">
+                                <h5 id="totalCostLabel">$28,306.85</h5>
                             </div>
                         </div>
                     </div>
                 </div>
                 <!--TABLE-->
-                <div class="row">
-                    <table>
+                <div class="row mt-4 border border-dark border">
+                    <table class="table table-striped">
+                        <tr>
+                            <th>Month</th>
+                            <th>Payment</th>
+                            <th>Principal</th>
+                            <th>Interest</th>
+                            <th>Total Interest</th>
+                            <th>Balance</th>
+                        </tr>
                         <!--RESULTS-->
                     </table>
                 </div>
@@ -164,6 +196,10 @@
         </script>
         <!--Custom JS-->
         <script src="/js/site.js"></script>
+
+        <script>
+            document.getElementById("btnSubmit").addEventListener("click", getData);
+        </script>
     </body>
 
 </html>
