@@ -50,6 +50,7 @@ function calculateData(balance, term, rate) {
 
     return output;
 }
+
 function formatToCurrency(amount) {
 
     return (amount).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,'); 

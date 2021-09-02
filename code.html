@@ -65,34 +65,133 @@
                 <h2 class="border-1 border-bottom border-dark secondary-font">The Code For REPAY:</h2>
                 <div class="row row-cols-1 row-cols-lg-2">
                     <!-- Code Window -->
-                    <div class="col-lg-8">
+                    <div class="col-lg-7">
                         <pre class="line-numbers">
                             <code class="language-javascript">
-                                function firstName(string fullName) {
-                                    alert(
-                                        fullName
-                                    );
+                                function getData() {
+
+                                    //gather user input
+                                    let balance = parseFloat(document.getElementById("balance").value);
+                                    let term = parseFloat(document.getElementById("term").value);
+                                    let rate = parseFloat(document.getElementById("interestRate").value);
+                                
+                                    //make calculations
+                                    let calculatedData = calculateData(balance, term, rate);
+                                    //write data to the page    
+                                    display(calculatedData);
+                                }
+                                
+                                function calculateData(balance, term, rate) {
+                                
+                                    let output = { 
+                                        totalInterestPaid: 0,
+                                        totalPrincipalPaid: 0,
+                                        dataArray: [],
+                                    };
+                                
+                                    let previousRemainingBalance = balance;
+                                  
+                                    
+                                    for (let month = 1; month <= term; month++) {
+                                        
+                                        let totalMonthlyPayment = (balance) * (rate / 1200) / (1 - (1 + rate / 1200)**(-term));
+                                
+                                        let interestPayment = previousRemainingBalance * rate / 1200;
+                                        output.totalInterestPaid += interestPayment;
+                                
+                                        let principalPayment = totalMonthlyPayment - interestPayment;
+                                        output.totalPrincipalPaid += principalPayment;
+                                
+                                        let remainingBalance = previousRemainingBalance - principalPayment;
+                                        previousRemainingBalance = remainingBalance;
+                                
+                                        if(remainingBalance < 0) {
+                                            remainingBalance = 0;
+                                        }
+                                
+                                        output.dataArray.push(month);
+                                        output.dataArray.push(formatToCurrency(totalMonthlyPayment));
+                                        output.dataArray.push(formatToCurrency(principalPayment));
+                                        output.dataArray.push(formatToCurrency(interestPayment));
+                                        output.dataArray.push(formatToCurrency(output.totalInterestPaid));
+                                        output.dataArray.push(formatToCurrency(remainingBalance));
+                                        
+                                    }
+                                
+                                    return output;
                                 }
 
-                                function middleName(string middleName) {
-                                    alert(
-                                        lastName
-                                    );
+                                function formatToCurrency(amount) {
+                                
+                                    return (amount).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,'); 
+                                
                                 }
-
-                                function lastName(string lastName) {
-                                    alert(
-                                        lastName
-                                    );
+                                
+                                
+                                function display(output) {
+                                
+                                    //financial variables
+                                    totalPrincipalPaid = output.totalPrincipalPaid;
+                                    totalInterestPaid = output.totalInterestPaid;
+                                    totalCost = totalPrincipalPaid + totalInterestPaid;
+                                    dataArray = output.dataArray;
+                                    
+                                    if(dataArray[1] == undefined) {
+                                        document.getElementById("monthlyPaymentLabel").innerHTML = '$' + formatToCurrency(0)
+                                    } 
+                                    else {
+                                        document.getElementById("monthlyPaymentLabel").innerHTML = '$' + dataArray[1];
+                                    } 
+                                
+                                    document.getElementById("totalPrincipalLabel").innerHTML = '$' + formatToCurrency(totalPrincipalPaid);
+                                    document.getElementById("totalInterestLabel").innerHTML = '$' + formatToCurrency(totalInterestPaid);
+                                    document.getElementById("totalCostLabel").innerHTML = '$' + formatToCurrency(totalCost);
+                                    
+                                    //DOM variables
+                                    let tableBody = document.getElementById("results");
+                                    let templateRow = document.getElementById("repayTemplate");
+                                
+                                    for(let i = 0; i < dataArray.length; i += 6) {
+                                
+                                        let tableRow = document.importNode(templateRow.content, true);
+                                        let rowCols = tableRow.querySelectorAll("td");
+                                
+                                        rowCols[0].textContent = dataArray[i];
+                                        rowCols[1].textContent = dataArray[i + 1];
+                                        rowCols[2].textContent = dataArray[i + 2];
+                                        rowCols[3].textContent = dataArray[i + 3];
+                                        rowCols[4].textContent = dataArray[i + 4];
+                                        rowCols[5].textContent = dataArray[i + 5];
+                                
+                                        tableBody.appendChild(tableRow);
+                                    }
+                                
                                 }
                             </code>
                         </pre>
                     </div>
                     <!-- Code Description -->
-                    <div class="col-lg-4">
-                        <p>The Code is structured in one function.</p>
-                        <h5>Print Name</h5>
-                        <p>PrintName consists of three functions that are each responsible for printing one part of a name. firstName is responsible for printing the first name via the fullName parameter. middleName is responsible for printing the middle name via the middle name parameter. lastName is responsible for printing the last name via the lastName parameter.</p>
+                    <div class="col-lg-5">
+                        <h4 class="text-center"><strong>The Design</strong></h4>
+                        <p>To keep the code as clean as possible, the program is encapsulated into four functions:</p>
+                        <ul>
+                            <li>
+                                <h5>getData</h5>
+                            </li>
+                            <p>This function serves as the main entry point to the program. First, it gets the balance, term, and interest rate storing them into corresponding variables and converting them into floating points. Next, it creates a variable: "calculatedData" and assigns the object returned from the calculateData function passing it the three variables gathered from the user. Lastly, it calls the display function, passing it the calculatedData object variable.</p>
+                            <li>
+                                <h5>formatToCurrency</h5>
+                            </li>
+                            <p>Since there is no decimal type in JavaScript, this function is responsible for rounding to the hundreth's place and inserting commas and zeros in the proper places. It is used multiple times in the coming functions. </p>
+                            <li>
+                                <h5>calculateData</h5>
+                            </li>
+                            <p>This function is responsible for calculating the monthly payment, interest payment, principal payment, balance, total interest paid and total principal paid. It has three parameters: "balance", "term", and "rate". First, it creates and initializes an object called "output" which has three properties: "totalIntertestPaid", "totalPrincipalPaid", and "dataArray". It initiates the original balance in a variable called "previousRemainingBalance". Next, the function uses a for loop, where each iteration correlates to a month, looping each month until it hits the loan term. Within this loop, each variable needed is calculated and stored in the "output.dataArray". The idea is that a loop will read the first 6 locations in this array and assign them to their corresponding column in the table.</p>
+                            <li>
+                                <h5>display</h5>
+                            </li>
+                            <p></p>
+                        </ul>
                     </div>
                 </div>
             </div>
