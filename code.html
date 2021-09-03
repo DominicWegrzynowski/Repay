@@ -190,6 +190,21 @@
                             <li>
                                 <h5>display</h5>
                             </li>
+                            <p>This function is responsible for manipulating the DOM to update the page's financial data labels and generate a table with the data passed in from calculateData(). It has one parameter, being the output object. This object parameter has the totalPrincipalPaid, totalInterestPaid, and dataArray properties. It first updates and formats the financial data labels. Next, it uses a template:</p>
+                            <pre class="line-numbers">
+                                <code class="language-markup">
+                                    &lt;template id="repayTemplate">
+                                        &lt;tr>
+                                            &lt;td>&lt;/td>
+                                            &lt;td>&lt;/td>
+                                            &lt;td>&lt;/td>
+                                            &lt;td>&lt;/td>
+                                            &lt;td>&lt;/td>
+                                            &lt;td>&lt;/td>
+                                        &lt;/tr>
+                                    &lt;/template>
+                                </code>
+                            </pre>
                             <p></p>
                         </ul>
                     </div>
