@@ -205,7 +205,7 @@
                                     &lt;/template>
                                 </code>
                             </pre>
-                            <p></p>
+                            <p>The next portion of the function is initializing the tableBody variable to the HTML table element that will store all of the results, and the templateRow variable which is assigned to the template above. Next it uses a for loop to loop through the dataArray, incrementing by 6 as there are 6 columns per row. Within the loop, there are two variables, first being tableRow which is assigned to the result of the document.importNode method. This method creates a copy of a DocumentFragment(template). The second variable is rowCols, which represents the columns in the table. After this, It assigns each rowCols.textContent to the value of the corresponding dataArray values. Lastly, it adds each row tableRow to the tableBody.</p>
                         </ul>
                     </div>
                 </div>
